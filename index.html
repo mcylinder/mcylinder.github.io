@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html manifest="/app.manifest">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DigitalCoach">
+    <meta name="theme-color" content="#686bd2">
+
+    <title>DigitalCoach</title>
+
+    <!-- These meta tags are Apple-specific, and set the web application to run in full-screen mode with a black status bar. Learn more at https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="DigitalCoach">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="apple-touch-icon" href="icons/icon-72x72.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-96x96.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-128x128.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-144x144.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-384x384.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-512x512.png" type="image/x-icon">
+
+    <!-- Imports the manifest to represent the web application. A web app must have a manifest to be a PWA. -->
+    <link rel="manifest" href="manifest.json">
+
+<style>
+    @import  url('https://rsms.me/inter/inter.css');
+    body, html { font-family: 'Inter', sans-serif; }
+    @supports (font-variation-settings: normal) {
+        body, html { font-family: 'Inter var', sans-serif!important; }
+    }
+</style>
+
+    <link rel="stylesheet" href="assets/fonts.css" />
+    <link rel="stylesheet" href="assets/main.css" />
+    <script src="assets/vue.js"></script>
+    <script src="assets/Tone.min.js"></script>
+
+</head>
+<body>
+<span id="app">
+    <div class="front_page page" v-if="this.home_page">
+        <header>
+            <h1>Exercise &amp; Stretch</h1>
+        </header>
+        <section>
+            <ul class="menu_list">
+                <li v-on:click="show_sequence(seq)" v-for="(seq,i) in this.records" v-if="null !== seq.title">
+                    {{seq.title}} <span v-if="seq.autorun === 1">🏃🏻‍♂️</span>
+                <li>
+            </ul>
+        </section>
+    </div>
+    <!--   ##################  -->
+    <div class="frame  page " :class="this.program" v-if="!this.home_page">
+	<header>
+		<h1>{{ this.show_frame.action_type }}</h1>
+		<h1>{{ this.show_frame.over_prog }}</h1>
+	</header>
+
+	<section>
+		<div class="info">
+			<div class="img_zone" v-on:click="start_clk()">
+				<img :src="this.show_frame.img">
+
+			</div>
+
+			<div class="text_zone">
+				<h2>{{this.show_frame.title  }}</h2>
+				<h3>{{this.show_frame.next_exer  }}</h3>
+                    <span v-if="this.running === false" v-html="this.show_frame.description"></span>
+
+     <ul class="bands" v-if="this.running === false  && this.show_frame.action_type === 'Exer'">
+                     <li  v-for="bnd in this.show_frame.bands" :class="bnd" :style="'background-color:'+bnd+';'"></li>
+                </ul>
+			</div>
+		</div>
+
+		<div v-if="this.running" class="count_down">{{this.form_sec  }}</div>
+
+		<footer>
+			<i v-on:click="move_to_seq(-1)" class="demo-icon icon-left-open">&#9664;</i>
+			<i v-on:click="main_menu()" class="demo-icon smaller icon-th">&#9650;</i>
+			<i v-on:click="move_to_seq(1)" class="demo-icon icon-right-open">&#9654;</i>
+		</footer>
+
+	</section>
+    </div>
+        <img style="visibility:hidden; height:0px; width:0px;" src="assets/e0f77abd.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/634e7c01.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/e94ed8aa.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/7437c4e1.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/a3a9ae00.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/03029be1.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/2ec91c15.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/7f0bbca7.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/29ad58d6.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/0cf9497c.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/9d90ccb3.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/30407b70.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/dd234c27.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/9ed09caa.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/996fe7f6.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/7e15757a.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/0d70914e.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/4ec058b1.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/b15a83fa.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/44a3e0d9.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/2a0fc012.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/39def14d.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/9d503938.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/2d9e076f.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/cfd1348d.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/18ccbf4f.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/3d7a0ade.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/b5d37e78.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/9ed616e8.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/89fbd6fd.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/c4ede2d6.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/8729dc8a.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/f5595ed8.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/7e5d3e91.jpg" />
+            <img style="visibility:hidden; height:0px; width:0px;" src="assets/3ebb8910.jpg" />
+    </span>
+
+
+<script src="assets/exer_data.js"></script>
+<script src="assets/NoSleep.min.js"></script>
+<script src="assets/main.js"></script>
+<script>
+    console.log(navigator);
+    if ('serviceWorker' in navigator) {
+        console.log('SW');
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('assets/serviceWorker.js');
+        });
+    }
+
+
+</script>
+
+
+
+</body>
+</html>
